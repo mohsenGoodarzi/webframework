@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"net/http"
 	"time"
@@ -9,12 +8,10 @@ import (
 	"github.com/gorilla/mux"
 )
 
+func handleRequest() {
 
-func handleRequests() {
-	
-
-	url, _ := r.NewRoute().URLHost()
-	fmt.Println(url)
+	r:= mux.NewRouter()
+	controllers.ProductHandleRequests(r)
 	srv := &http.Server{
 		Handler: r,
 		Addr:    "localhost:8000",
@@ -26,5 +23,5 @@ func handleRequests() {
 }
 
 func main() {
-	handleRequests()
+	handleRequest()
 }

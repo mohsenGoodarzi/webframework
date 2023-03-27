@@ -1,4 +1,4 @@
-module webframework
+module github.com/mohsenGoodarzi/webframework
 
 go 1.20
 
