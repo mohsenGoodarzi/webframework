@@ -4,14 +4,20 @@ import (
 	"log"
 	"net/http"
 	"time"
-	"github.com/mohsenGoodarzi/webframework/controllers"
-	"github.com/gorilla/mux"
-)
 
+	"github.com/gorilla/mux"
+	"github.com/mohsenGoodarzi/webframework/controllers"
+)
+func registerAllEndPoints(r *mux.Router){
+	controllers.ProductHandleRequests(r)
+}
 func handleRequest() {
 
-	r:= mux.NewRouter()
-	controllers.ProductHandleRequests(r)
+	r := mux.NewRouter()
+	r.Host("http://localhost:8000/")
+	r.Schemes("http://")
+	r.Methods("GET , POST")
+	registerAllEndPoints(r)
 	srv := &http.Server{
 		Handler: r,
 		Addr:    "localhost:8000",

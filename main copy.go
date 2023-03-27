@@ -21,9 +21,7 @@ func homePage(w http.ResponseWriter, r *http.Request) {
 
 func handleRequests() {
 	r := mux.NewRouter().StrictSlash(true)
-	r.Host("http://localhost:8000/")
-	r.Schemes("http://")
-	r.Methods("GET , POST")
+	
 	r.Path("/home").HandlerFunc(homePage).Schemes("http")
 	r.Path("/about").HandlerFunc(aboutPage)
 

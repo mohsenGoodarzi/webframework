@@ -4,12 +4,13 @@ import (
 	"fmt"
 	"net/http"
 	"strconv"
+
 	"github.com/gorilla/mux"
-	"github.com/mohsenGoodarzi/webframework/models"
+	persistent "github.com/mohsenGoodarzi/webframework/persistentlayer"
 )
 
 func products(w http.ResponseWriter, r *http.Request) {
-	products := models.AllProducts()
+	products := persistent.AllProducts()
 	fmt.Fprintf(w, "%v", products)
 }
 
@@ -21,7 +22,7 @@ func product(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		return
 	}
-	product := models.GetProduct(i)
+	product := persistent.GetProduct(i)
 	fmt.Fprintf(w, "%v", product)
 }
 
