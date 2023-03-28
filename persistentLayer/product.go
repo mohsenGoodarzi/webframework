@@ -1,5 +1,7 @@
 package persistentlayer
-import "github.com/mohsenGoodarzi/webframework/models"
+
+
+import "github.com/mohsenGoodarzi/webframework/entities"
 
 func AllProducts() *models.Products {
 

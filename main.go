@@ -6,12 +6,14 @@ import (
 	"time"
 
 	"github.com/gorilla/mux"
-	"github.com/mohsenGoodarzi/webframework/controllers"
+	//"github.com/mohsenGoodarzi/webframework/services"
+	"github.com/mohsenGoodarzi/webframework/entities/acl"
 )
+
 func registerAllEndPoints(r *mux.Router){
-	controllers.ProductHandleRequests(r)
+	//services.ProductHandleRequests(r)
 }
-func handleRequest() {
+func initServer() {
 
 	r := mux.NewRouter()
 	r.Host("http://localhost:8000/")
@@ -29,5 +31,16 @@ func handleRequest() {
 }
 
 func main() {
-	handleRequest()
+	//initServer()
+	endpoint := "About"
+	myAcl := acl.CreateACL()
+	myAcl.EndPoints["Product"]=345
+	myAcl.EndPoints["About"]=450
+	myAcl.EndPoints["Remove/ACL"]=450
+	for i := 0; i < myAcl.EndPoints.Len(); i++ {
+		elem := myAcl.EndPoints.Front()
+		if elem.Value == endpoint {
+			return elem
+		}
+    }
 }
