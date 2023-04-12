@@ -7,7 +7,7 @@ import (
 
 	"github.com/gorilla/mux"
 	//"github.com/mohsenGoodarzi/webframework/services"
-	"github.com/mohsenGoodarzi/webframework/entities/acl"
+	"github.com/mohsenGoodarzi/webframework/entities"
 )
 
 func registerAllEndPoints(r *mux.Router){
@@ -25,7 +25,7 @@ func initServer() {
 		Addr:    "localhost:8000",
 		// Good practice: enforce timeouts for servers you create!
 		WriteTimeout: 15 * time.Second,
-		ReadTimeout:  15 * time.Second,
+		ReadTimeout:  10 * time.Second,
 	}
 	log.Fatal(srv.ListenAndServe())
 }
