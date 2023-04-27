@@ -1,13 +1,15 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 	"time"
 
 	"github.com/gorilla/mux"
+	"github.com/go-redis/redis"
 	//"github.com/mohsenGoodarzi/webframework/services"
-	"github.com/mohsenGoodarzi/webframework/entities"
+	acl "github.com/mohsenGoodarzi/webframework/utils"
 )
 
 func registerAllEndPoints(r *mux.Router){
@@ -31,16 +33,18 @@ func initServer() {
 }
 
 func main() {
-	//initServer()
-	endpoint := "About"
-	myAcl := acl.CreateACL()
-	myAcl.EndPoints["Product"]=345
-	myAcl.EndPoints["About"]=450
-	myAcl.EndPoints["Remove/ACL"]=450
-	for i := 0; i < myAcl.EndPoints.Len(); i++ {
-		elem := myAcl.EndPoints.Front()
-		if elem.Value == endpoint {
-			return elem
-		}
-    }
+	initServer()
+	
+}
+func main_() {
+	fmt.Println("Go Redis Tutorial")
+
+	client := redis.NewClient(&redis.Options{
+		Addr: "localhost:6379",
+		Password: "",
+		DB: 0,
+	})
+
+	pong, err := client.Ping().Result()
+	fmt.Println(pong, err)
 }
